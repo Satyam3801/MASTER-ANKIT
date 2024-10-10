@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Skill Improvement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        #timer {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">THIS WEB IS DEVELOPED BY</h1>
+    <h1 style="text-align: center;color: aquamarine;">MASTER ANKIT</h1>
+    <h2>Typing Test</h2>
+    <p id="sentence">The quick brown fox jumps over the lazy dog.</p>
+    <textarea id="input" placeholder="Start typing above sentence..."></textarea>
+    <div id="timer">Time: 5s</div>
+    <div id="result"></div>
+
+    <script>
+        let timerDuration = 10; // Timer duration in seconds
+        let timerId;
+
+        document.getElementById('input').focus();
+
+        function startTimer() {
+            let timeLeft = timerDuration;
+            document.getElementById('timer').innerText = `Time: ${timeLeft}s`;
+            timerId = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = `Time: ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    document.getElementById('input').disabled = true;
+                    evaluateTyping();
+                }
+            }, 1000);
+        }
+
+        function evaluateTyping() {
+            const inputText = document.getElementById('input').value;
+            const sentence = document.getElementById('sentence').innerText;
+            if (inputText === sentence) {
+                document.getElementById('result').innerText = "Well done! You typed it correctly.";
+            } else {
+                document.getElementById('result').innerText = "Try again! Your input did not match.";
+            }
+        }
+
+        // Start the timer automatically when the page loads
+        window.onload = startTimer;
+    </script>
+    <a href="www.google.com">BACK TO GOOLGE</a>
+    <a href="about.html">ABOUT MASTER ANKIT</a>
+</body>
+</html>
